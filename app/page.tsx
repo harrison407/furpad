@@ -35,7 +35,7 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-dark-800/80 backdrop-blur-md border border-dark-600 rounded-xl px-6 py-3 text-white font-semibold hover:bg-dark-700/80 transition-all duration-200 flex items-center shadow-lg"
+                  className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-6 py-3 text-white font-semibold hover:bg-white/20 transition-all duration-200 flex items-center"
                 >
                   <Rocket className="w-5 h-5 mr-2" />
                   Launch Your Token
