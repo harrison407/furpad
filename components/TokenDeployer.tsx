@@ -1,0 +1,274 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { ethers } from 'ethers'
+import { useAccount, useNetwork } from 'wagmi'
+import { sepolia, goerli } from 'wagmi/chains'
+import toast from 'react-hot-toast'
+import { CheckCircle, ExternalLink, Copy } from 'lucide-react'
+import { motion } from 'framer-motion'
+
+// TypeScript declaration for window.ethereum
+declare global {
+  interface Window {
+    ethereum?: any
+  }
+}
+
+// Basic ERC20 Token Contract ABI (simplified for demo)
+const TOKEN_ABI = [
+  'function name() view returns (string)',
+  'function symbol() view returns (string)',
+  'function totalSupply() view returns (uint256)',
+  'function balanceOf(address) view returns (uint256)',
+  'function transfer(address to, uint amount) returns (bool)',
+  'function approve(address spender, uint256 amount) returns (bool)',
+  'function allowance(address owner, address spender) view returns (uint256)',
+  'event Transfer(address indexed from, address indexed to, uint amount)',
+  'event Approval(address indexed owner, address indexed spender, uint amount)'
+]
+
+// Token Factory Contract ABI (simplified)
+const FACTORY_ABI = [
+  'function createToken(string name, string symbol, uint256 totalSupply, uint256 buyTax, uint256 sellTax, uint256 lpPercentage, address marketingWallet, uint256 marketingPercentage, address[] wallets, uint256[] percentages) returns (address)',
+  'event TokenCreated(address indexed token, address indexed owner, string name, string symbol)'
+]
+
+interface TokenDeployerProps {
+  isDeploying: boolean
+  setIsDeploying: (deploying: boolean) => void
+  deployedToken: string | null
+  setDeployedToken: (token: string | null) => void
+}
+
+export function TokenDeployer({
+  isDeploying,
+  setIsDeploying,
+  deployedToken,
+  setDeployedToken
+}: TokenDeployerProps) {
+  const { address, isConnected } = useAccount()
+  const { chain } = useNetwork()
+  const [deploymentStep, setDeploymentStep] = useState<string>('')
+  const [deploymentProgress, setDeploymentProgress] = useState(0)
+
+  // Mock factory addresses for testnet (you would deploy your own factory)
+  const FACTORY_ADDRESSES = {
+    [sepolia.id]: '0x1234567890123456789012345678901234567890', // Replace with actual factory address
+    [goerli.id]: '0x0987654321098765432109876543210987654321', // Replace with actual factory address
+  }
+
+  const deployToken = async (formData: any) => {
+    if (!isConnected || !address) {
+      toast.error('Please connect your wallet')
+      return
+    }
+
+    if (!chain || (chain.id !== sepolia.id && chain.id !== goerli.id)) {
+      toast.error('Please switch to Sepolia or Goerli testnet')
+      return
+    }
+
+    setIsDeploying(true)
+    setDeploymentProgress(0)
+    setDeploymentStep('Initializing deployment...')
+
+    try {
+      // Check if ethereum provider exists
+      if (typeof window === 'undefined' || !window.ethereum) {
+        throw new Error('No Ethereum provider found')
+      }
+
+      // Get provider and signer
+      const provider = new ethers.BrowserProvider(window.ethereum as any)
+      const signer = await provider.getSigner()
+
+      setDeploymentProgress(20)
+      setDeploymentStep('Connecting to factory contract...')
+
+      // Get factory contract
+      const factoryAddress = FACTORY_ADDRESSES[chain.id]
+      const factory = new ethers.Contract(factoryAddress, FACTORY_ABI, signer)
+
+      setDeploymentProgress(40)
+      setDeploymentStep('Preparing token parameters...')
+
+      // Prepare parameters
+      const totalSupply = ethers.parseUnits(formData.totalSupply, 18)
+      const buyTax = formData.buyTax * 100 // Convert to basis points
+      const sellTax = formData.sellTax * 100
+      const lpPercentage = formData.lpPercentage * 100
+      const marketingPercentage = formData.marketingPercentage * 100
+
+      const wallets = formData.wallets?.map((w: any) => w.address) || []
+      const percentages = formData.wallets?.map((w: any) => w.percentage * 100) || []
+
+      setDeploymentProgress(60)
+      setDeploymentStep('Deploying token contract...')
+
+      // Deploy token
+      const tx = await factory.createToken(
+        formData.tokenName,
+        formData.tokenSymbol,
+        totalSupply,
+        buyTax,
+        sellTax,
+        lpPercentage,
+        formData.marketingWallet,
+        marketingPercentage,
+        wallets,
+        percentages,
+        { gasLimit: 5000000 }
+      )
+
+      setDeploymentProgress(80)
+      setDeploymentStep('Waiting for transaction confirmation...')
+
+      // Wait for transaction
+      const receipt = await tx.wait()
+
+      setDeploymentProgress(90)
+      setDeploymentStep('Extracting token address...')
+
+      // Extract token address from event
+      const event = receipt.logs.find((log: any) => {
+        try {
+          const parsed = factory.interface.parseLog(log)
+          return parsed?.name === 'TokenCreated'
+        } catch {
+          return false
+        }
+      })
+
+      if (event) {
+        const parsed = factory.interface.parseLog(event)
+        if (parsed) {
+          const tokenAddress = parsed.args[0]
+          setDeployedToken(tokenAddress)
+          setDeploymentProgress(100)
+          setDeploymentStep('Token deployed successfully!')
+          toast.success('Token deployed successfully!')
+        } else {
+          throw new Error('Failed to parse token creation event')
+        }
+      } else {
+        throw new Error('Token creation event not found')
+      }
+
+    } catch (error: any) {
+      console.error('Deployment error:', error)
+      toast.error(`Deployment failed: ${error.message}`)
+      setDeploymentStep('Deployment failed')
+    } finally {
+      setIsDeploying(false)
+    }
+  }
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text)
+    toast.success('Copied to clipboard!')
+  }
+
+  const getExplorerUrl = (address: string) => {
+    if (chain?.id === sepolia.id) {
+      return `https://sepolia.etherscan.io/address/${address}`
+    } else if (chain?.id === goerli.id) {
+      return `https://goerli.etherscan.io/address/${address}`
+    }
+    return `https://etherscan.io/address/${address}`
+  }
+
+  if (!isConnected) return null
+
+  return (
+    <div className="space-y-6">
+      {/* Deployment Progress */}
+      {isDeploying && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="card"
+        >
+          <h3 className="text-lg font-semibold mb-4">Deployment Progress</h3>
+          
+          <div className="mb-4">
+            <div className="flex justify-between text-sm mb-2">
+              <span>Progress</span>
+              <span>{deploymentProgress}%</span>
+            </div>
+            <div className="w-full bg-dark-700 rounded-full h-2">
+              <div
+                className="bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full transition-all duration-500"
+                style={{ width: `${deploymentProgress}%` }}
+              />
+            </div>
+          </div>
+
+          <p className="text-dark-300">{deploymentStep}</p>
+        </motion.div>
+      )}
+
+      {/* Deployed Token Info */}
+      {deployedToken && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="card"
+        >
+          <div className="flex items-center mb-4">
+            <CheckCircle className="w-6 h-6 text-green-400 mr-2" />
+            <h3 className="text-lg font-semibold text-green-400">Token Deployed Successfully!</h3>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-2">Token Contract Address</label>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="text"
+                  value={deployedToken}
+                  readOnly
+                  className="input-field flex-1"
+                />
+                <button
+                  onClick={() => copyToClipboard(deployedToken)}
+                  className="btn-secondary"
+                >
+                  <Copy className="w-4 h-4" />
+                </button>
+                <a
+                  href={getExplorerUrl(deployedToken)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a
+                href={`https://app.uniswap.org/#/swap?outputCurrency=${deployedToken}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary text-center"
+              >
+                View on Uniswap
+              </a>
+              <a
+                href={`https://dexscreener.com/ethereum/${deployedToken}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary text-center"
+              >
+                View on DexScreener
+              </a>
+            </div>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  )
+}
+
