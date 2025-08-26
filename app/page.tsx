@@ -24,9 +24,9 @@ export default function Home() {
               <h1 className="text-5xl md:text-7xl font-bold mb-6">
                 <span className="text-gradient">Furchill</span>
                 <br />
-                <span className="text-gray-900">Launchpad</span>
+                <span className="text-white">Launchpad</span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto">
                 Deploy your memecoin with ease. Configure taxes, LP allocation, and wallet distributions in minutes.
               </p>
               
@@ -60,7 +60,7 @@ export default function Home() {
                 <Zap className="w-8 h-8 text-primary-400" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Lightning Fast</h3>
-              <p className="text-gray-700">Deploy your token in under 5 minutes with our streamlined process.</p>
+              <p className="text-white">Deploy your token in under 5 minutes with our streamlined process.</p>
             </motion.div>
 
             <motion.div
@@ -73,7 +73,7 @@ export default function Home() {
                 <Shield className="w-8 h-8 text-secondary-400" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Secure & Audited</h3>
-              <p className="text-gray-700">Battle-tested smart contracts with comprehensive security measures.</p>
+              <p className="text-white">Battle-tested smart contracts with comprehensive security measures.</p>
             </motion.div>
 
             <motion.div
@@ -86,7 +86,7 @@ export default function Home() {
                 <Coins className="w-8 h-8 text-primary-400" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Customizable</h3>
-              <p className="text-gray-700">Full control over taxes, LP allocation, and wallet distributions.</p>
+              <p className="text-white">Full control over taxes, LP allocation, and wallet distributions.</p>
             </motion.div>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function Home() {
           >
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold mb-4">Deploy Your Token</h2>
-              <p className="text-gray-700">Configure your token parameters and launch your memecoin</p>
+              <p className="text-white">Configure your token parameters and launch your memecoin</p>
             </div>
             <LaunchpadForm />
           </motion.div>
@@ -111,9 +111,9 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-gray-300">
+      <footer className="py-8 border-t border-white/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-600">
+          <p className="text-white">
             © 2024 Furchill Launchpad. Built with ❤️ for the memecoin community.
           </p>
         </div>
