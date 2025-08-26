@@ -32,8 +32,8 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-dark-300 hover:text-white transition-colors">
-              Features
+            <a href="https://furchill.com" target="_blank" rel="noopener noreferrer" className="text-dark-300 hover:text-white transition-colors">
+              Website
             </a>
             <a href="#launchpad" className="text-dark-300 hover:text-white transition-colors">
               Launchpad
@@ -64,8 +64,8 @@ export function Header() {
             className="md:hidden py-4 border-t border-dark-700"
           >
             <div className="flex flex-col space-y-4">
-              <a href="#features" className="text-dark-300 hover:text-white transition-colors">
-                Features
+              <a href="https://furchill.com" target="_blank" rel="noopener noreferrer" className="text-dark-300 hover:text-white transition-colors">
+                Website
               </a>
               <a href="#launchpad" className="text-dark-300 hover:text-white transition-colors">
                 Launchpad
