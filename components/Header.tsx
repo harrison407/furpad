@@ -9,7 +9,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-dark-900/80 backdrop-blur-md border-b border-dark-700">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-white/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -27,18 +27,18 @@ export function Header() {
             <div className="text-2xl font-bold text-gradient">
               Furchill
             </div>
-            <span className="ml-2 text-sm text-dark-400">Launchpad</span>
+            <span className="ml-2 text-sm text-gray-600">Launchpad</span>
           </motion.div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="https://furchill.com" target="_blank" rel="noopener noreferrer" className="text-dark-300 hover:text-white transition-colors">
+            <a href="https://furchill.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900 transition-colors">
               Website
             </a>
-            <a href="#launchpad" className="text-dark-300 hover:text-white transition-colors">
+            <a href="#launchpad" className="text-gray-700 hover:text-gray-900 transition-colors">
               Launchpad
             </a>
-            <a href="#docs" className="text-dark-300 hover:text-white transition-colors">
+            <a href="#docs" className="text-gray-700 hover:text-gray-900 transition-colors">
               Docs
             </a>
             <ConnectButton />
@@ -48,7 +48,7 @@ export function Header() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-dark-300 hover:text-white transition-colors"
+              className="text-gray-700 hover:text-gray-900 transition-colors"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -61,16 +61,16 @@ export function Header() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden py-4 border-t border-dark-700"
+            className="md:hidden py-4 border-t border-white/20"
           >
             <div className="flex flex-col space-y-4">
-              <a href="https://furchill.com" target="_blank" rel="noopener noreferrer" className="text-dark-300 hover:text-white transition-colors">
+              <a href="https://furchill.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-gray-900 transition-colors">
                 Website
               </a>
-              <a href="#launchpad" className="text-dark-300 hover:text-white transition-colors">
+              <a href="#launchpad" className="text-gray-700 hover:text-gray-900 transition-colors">
                 Launchpad
               </a>
-              <a href="#docs" className="text-dark-300 hover:text-white transition-colors">
+              <a href="#docs" className="text-gray-700 hover:text-gray-900 transition-colors">
                 Docs
               </a>
               <div className="pt-2">
