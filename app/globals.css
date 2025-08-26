@@ -10,9 +10,14 @@
   }
   
   body {
-    background: linear-gradient(135deg, #fdbf36 0%, #fdbf36 40%, #fbbf24 70%, #ffffff 100%);
+    background: #fdbf36 !important;
+    background: linear-gradient(135deg, #fdbf36 0%, #fdbf36 60%, #fbbf24 80%, #ffffff 100%) !important;
     min-height: 100vh;
     color: #1f2937;
+  }
+  
+  html {
+    background: #fdbf36 !important;
   }
 }
 
