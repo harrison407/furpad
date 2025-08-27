@@ -33,23 +33,10 @@ export default function Home() {
       }
     }
 
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault()
-      if (e.deltaX > 0 && currentSection < totalSections - 1) {
-        // Swipe right - go to next section only if not at the end
-        nextSection()
-      } else if (e.deltaX < 0 && currentSection > 0) {
-        // Swipe left - go to previous section only if not at the beginning
-        prevSection()
-      }
-    }
-
     window.addEventListener('keydown', handleKeyPress)
-    window.addEventListener('wheel', handleWheel, { passive: false })
 
     return () => {
       window.removeEventListener('keydown', handleKeyPress)
-      window.removeEventListener('wheel', handleWheel)
     }
   }, [currentSection, totalSections])
 
@@ -482,7 +469,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="card w-full overflow-y-auto"
+                className="card-scrollable w-full overflow-y-auto"
                 style={{ maxHeight: 'calc(100vh - 200px)' }}
               >
                 <div className="text-center mb-4 sm:mb-6">
