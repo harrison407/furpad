@@ -7,21 +7,21 @@ import { Toaster } from 'react-hot-toast'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Furchill Launchpad - Deploy Your Memecoin',
-  description: 'Launch your memecoin with ease on the Furchill Launchpad. Deploy tokens with customizable taxes, LP allocation, and wallet distributions.',
+  title: 'Furpad Launchpad - Deploy Your Memecoin',
+  description: 'Launch your memecoin with ease on the Furpad Launchpad. Deploy tokens with customizable taxes, LP allocation, and wallet distributions.',
   keywords: 'memecoin, launchpad, token deployment, ethereum, defi',
-  authors: [{ name: 'Furchill Team' }],
+  authors: [{ name: 'Furpad Team' }],
   openGraph: {
-    title: 'Furchill Launchpad',
+    title: 'Furpad Launchpad',
     description: 'Deploy your memecoin with ease',
     url: 'https://furchill.com',
-    siteName: 'Furchill Launchpad',
+    siteName: 'Furpad Launchpad',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Furchill Launchpad',
+        alt: 'Furpad Launchpad',
       },
     ],
     locale: 'en_US',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Furchill Launchpad',
+    title: 'Furpad Launchpad',
     description: 'Deploy your memecoin with ease',
     images: ['/og-image.png'],
   },
