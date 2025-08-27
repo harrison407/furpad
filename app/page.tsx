@@ -472,14 +472,14 @@ export default function Home() {
           </div>
           
           {/* Content */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center p-4 pt-32 sm:pt-4">
+          <div className="relative z-10 w-full h-full flex items-center justify-center p-4 pt-20 sm:pt-4">
             <div className="max-w-3xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
                 className="card-scrollable w-full overflow-y-auto"
-                style={{ maxHeight: 'calc(100vh - 200px)' }}
+                style={{ maxHeight: 'calc(100vh - 120px)' }}
               >
                 <div className="text-center mb-4 sm:mb-6">
                   <h2 className="text-xl sm:text-2xl font-bold mb-2">Deploy Your Token</h2>
