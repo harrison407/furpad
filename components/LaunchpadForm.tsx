@@ -13,13 +13,9 @@ import { TokenDeployer } from './TokenDeployer'
 
 // Supported chains
 const SUPPORTED_CHAINS = [
-  { id: 11155111, name: 'Sepolia', icon: '🔴' },
-  { id: 5, name: 'Goerli', icon: '🔵' },
   { id: 1, name: 'Ethereum', icon: '💎' },
-  { id: 137, name: 'Polygon', icon: '🟣' },
   { id: 56, name: 'BSC', icon: '🟡' },
-  { id: 42161, name: 'Arbitrum', icon: '🔵' },
-  { id: 10, name: 'Optimism', icon: '🔴' },
+  { id: 1399811150, name: 'Solana', icon: '🟣' },
 ]
 
 // Form validation schema
@@ -58,7 +54,7 @@ export function LaunchpadForm() {
   } = useForm<LaunchpadFormData>({
     resolver: zodResolver(launchpadSchema),
     defaultValues: {
-      selectedChain: 11155111, // Default to Sepolia
+      selectedChain: 1, // Default to Ethereum
       tokenName: '',
       tokenSymbol: '',
       totalSupply: '1000000000',
