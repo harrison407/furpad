@@ -88,29 +88,29 @@ export default function Home() {
         style={{ transform: `translateX(-${currentSection * 100}%)` }}
       >
         {/* Section 1: Hero */}
-        <div className="w-screen h-screen flex-shrink-0 relative">
+        <div className="w-screen h-screen flex-shrink-0 relative overflow-y-auto sm:overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img 
               src="/furpad.png" 
               alt="Furpad Background" 
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full sm:h-full min-h-screen object-cover object-center"
             />
             {/* Translucent yellow overlay to tone down the vibrant background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#fdbf36]/80 via-[#fbbf24]/70 to-[#fdbf36]/85"></div>
+            <div className="absolute inset-0 min-h-screen bg-gradient-to-b from-[#fdbf36]/80 via-[#fbbf24]/70 to-[#fdbf36]/85"></div>
             {/* Additional overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
+            <div className="absolute inset-0 min-h-screen bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
           </div>
           
           {/* Content */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center pt-32 sm:pt-0">
+          <div className="relative z-10 w-full min-h-screen flex items-center justify-center pt-40 sm:pt-0 sm:h-full">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="pt-16 sm:pt-0"
+              className="pt-20 sm:pt-0"
             >
                   {/* Title and Subtitle */}
                               <div className="mb-6 sm:mb-8 relative">
@@ -411,7 +411,7 @@ export default function Home() {
               </div>
 
                   {/* Features Section - Moved into hero */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto px-4 mt-6 sm:mt-0">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto px-4 mt-6 sm:mt-0 pb-8 sm:pb-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
