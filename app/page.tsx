@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [currentSection, setCurrentSection] = useState(0)
+  const [showDisclaimer, setShowDisclaimer] = useState(true)
   const totalSections = 2
 
   const nextSection = () => {
@@ -57,27 +58,27 @@ export default function Home() {
       <Header />
 
       {/* Navigation Arrows */}
-      <div className="fixed top-1/2 left-4 z-50 transform -translate-y-1/2">
+      <div className="fixed top-1/2 left-2 sm:left-4 z-50 transform -translate-y-1/2">
         <button
           onClick={prevSection}
           disabled={currentSection === 0}
-          className={`bg-white/20 backdrop-blur-md border border-white/30 rounded-full p-3 transition-all duration-300 text-white ${
+          className={`bg-white/20 backdrop-blur-md border border-white/30 rounded-full p-2 sm:p-3 transition-all duration-300 text-white ${
             currentSection === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/30'
           }`}
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
         </button>
       </div>
       
-      <div className="fixed top-1/2 right-4 z-50 transform -translate-y-1/2">
+      <div className="fixed top-1/2 right-2 sm:right-4 z-50 transform -translate-y-1/2">
         <button
           onClick={nextSection}
           disabled={currentSection === totalSections - 1}
-          className={`bg-white/20 backdrop-blur-md border border-white/30 rounded-full p-3 transition-all duration-300 text-white ${
+          className={`bg-white/20 backdrop-blur-md border border-white/30 rounded-full p-2 sm:p-3 transition-all duration-300 text-white ${
             currentSection === totalSections - 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-white/30'
           }`}
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
         </button>
       </div>
 
@@ -111,10 +112,10 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
                   {/* Title and Subtitle */}
-                  <div className="mb-8 relative">
-                    <h1 className="text-5xl md:text-7xl font-bold mb-2">
-                      <span className="text-gradient">Furpad</span> 🐾
-                    </h1>
+                              <div className="mb-8 relative">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-2">
+                <span className="text-gradient">Furpad</span> 🐾
+              </h1>
                     {/* Diamond to the left of title */}
                     <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-8 w-4 h-4 animate-pulse opacity-60" style={{ animationDelay: '0.3s', animationDuration: '2.2s' }}>
                       <div className="w-full h-full bg-white transform rotate-45 relative">
@@ -392,36 +393,36 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <p className="text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto drop-shadow-lg">
+                  <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 max-w-3xl mx-auto drop-shadow-lg px-4">
                 Deploy your memecoin with ease. Configure taxes, LP allocation, and wallet distributions in minutes.
               </p>
               
-                  <div className="flex justify-center items-center mb-16">
+                  <div className="flex justify-center items-center mb-8 sm:mb-16 px-4">
                 <motion.button
                       onClick={goToDeploySection}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                      className="bg-white text-blue-600 font-semibold py-3 px-8 rounded-full transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white flex items-center justify-center shadow-lg"
+                      className="bg-white text-blue-600 font-semibold py-3 px-6 sm:px-8 rounded-full transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white flex items-center justify-center shadow-lg text-sm sm:text-base"
                 >
-                  <Rocket className="w-5 h-5 mr-2" />
+                  <Rocket className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Launch Your Token
                 </motion.button>
               </div>
 
                   {/* Features Section - Moved into hero */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
                       whileHover={{ scale: 1.05, y: -5 }}
-                      className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center cursor-pointer transition-all duration-300 hover:bg-black/50 hover:border-white/50 hover:shadow-xl"
+                      className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-4 sm:p-6 text-center cursor-pointer transition-all duration-300 hover:bg-black/50 hover:border-white/50 hover:shadow-xl"
             >
-                      <div className="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:bg-primary-500/30">
-                <Zap className="w-8 h-8 text-primary-400" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-primary-500/30">
+                <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-primary-400" />
               </div>
-                      <h3 className="text-xl font-semibold mb-2 text-white">Lightning Fast</h3>
-                      <p className="text-white/90">Deploy your token in under 5 minutes with our streamlined process.</p>
+                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">Lightning Fast</h3>
+                      <p className="text-sm sm:text-base text-white/90">Deploy your token in under 5 minutes with our streamlined process.</p>
             </motion.div>
 
             <motion.div
@@ -429,13 +430,13 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
                       whileHover={{ scale: 1.05, y: -5 }}
-                      className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center cursor-pointer transition-all duration-300 hover:bg-black/50 hover:border-white/50 hover:shadow-xl"
+                      className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-4 sm:p-6 text-center cursor-pointer transition-all duration-300 hover:bg-black/50 hover:border-white/50 hover:shadow-xl"
             >
-                      <div className="w-16 h-16 bg-secondary-500/20 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:bg-secondary-500/30">
-                <Shield className="w-8 h-8 text-secondary-400" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-secondary-500/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-secondary-500/30">
+                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-secondary-400" />
               </div>
-                      <h3 className="text-xl font-semibold mb-2 text-white">Secure & Audited</h3>
-                      <p className="text-white/90">Battle-tested smart contracts with comprehensive security measures.</p>
+                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">Secure & Audited</h3>
+                      <p className="text-sm sm:text-base text-white/90">Battle-tested smart contracts with comprehensive security measures.</p>
             </motion.div>
 
             <motion.div
@@ -443,13 +444,13 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
                       whileHover={{ scale: 1.05, y: -5 }}
-                      className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-6 text-center cursor-pointer transition-all duration-300 hover:bg-black/50 hover:border-white/50 hover:shadow-xl"
+                      className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-4 sm:p-6 text-center cursor-pointer transition-all duration-300 hover:bg-black/50 hover:border-white/50 hover:shadow-xl"
             >
-                      <div className="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:bg-primary-500/30">
-                <Coins className="w-8 h-8 text-primary-400" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-primary-500/30">
+                <Coins className="w-6 h-6 sm:w-8 sm:h-8 text-primary-400" />
                       </div>
-                      <h3 className="text-xl font-semibold mb-2 text-white">Customizable</h3>
-                      <p className="text-white/90">Full control over taxes, LP allocation, and wallet distributions.</p>
+                      <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">Customizable</h3>
+                      <p className="text-sm sm:text-base text-white/90">Full control over taxes, LP allocation, and wallet distributions.</p>
                     </motion.div>
                   </div>
                 </motion.div>
@@ -474,17 +475,17 @@ export default function Home() {
           </div>
           
           {/* Content */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
+            <div className="max-w-3xl mx-auto w-full">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="card max-h-[80vh] overflow-y-auto"
+                className="card max-h-[85vh] sm:max-h-[80vh] overflow-y-auto"
               >
-                <div className="text-center mb-6">
-                  <h2 className="text-2xl font-bold mb-2">Deploy Your Token</h2>
-                  <p className="text-white/90">Configure your token parameters and launch your memecoin</p>
+                <div className="text-center mb-4 sm:mb-6">
+                  <h2 className="text-xl sm:text-2xl font-bold mb-2">Deploy Your Token</h2>
+                  <p className="text-sm sm:text-base text-white/90">Configure your token parameters and launch your memecoin</p>
                 </div>
                 <LaunchpadForm />
               </motion.div>
@@ -494,17 +495,25 @@ export default function Home() {
       </div>
 
       {/* Disclaimer */}
-      <div className="fixed bottom-4 left-4 right-4 z-20">
-        <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-lg p-4 text-center">
-          <p className="text-xs text-white/70 leading-relaxed">
-            <strong>Disclaimer:</strong> This platform is for educational and entertainment purposes only. 
-            The information provided does not constitute financial advice, investment recommendations, or any form of professional guidance. 
-            Cryptocurrency investments carry significant risks, including the potential for total loss of capital. 
-            Always conduct your own research and consult with qualified financial advisors before making any investment decisions. 
-            Past performance does not guarantee future results. Use at your own risk.
-          </p>
+      {showDisclaimer && (
+        <div className="fixed bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 z-20">
+          <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-lg p-3 sm:p-4 text-center relative">
+            <button
+              onClick={() => setShowDisclaimer(false)}
+              className="absolute top-1 sm:top-2 right-1 sm:right-2 text-white/70 hover:text-white transition-colors duration-200 text-base sm:text-lg font-bold w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center rounded-full hover:bg-white/10"
+            >
+              ×
+            </button>
+            <p className="text-xs text-white/70 leading-relaxed pr-4 sm:pr-6">
+              <strong>Disclaimer:</strong> This platform is for educational and entertainment purposes only. 
+              The information provided does not constitute financial advice, investment recommendations, or any form of professional guidance. 
+              Cryptocurrency investments carry significant risks, including the potential for total loss of capital. 
+              Always conduct your own research and consult with qualified financial advisors before making any investment decisions. 
+              Past performance does not guarantee future results. Use at your own risk.
+            </p>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
