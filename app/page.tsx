@@ -103,14 +103,14 @@ export default function Home() {
           </div>
           
           {/* Content */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center pt-16 sm:pt-0">
+          <div className="relative z-10 w-full h-full flex items-center justify-center pt-32 sm:pt-0">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="pt-8 sm:pt-0"
+              className="pt-16 sm:pt-0"
             >
                   {/* Title and Subtitle */}
                               <div className="mb-6 sm:mb-8 relative">
@@ -476,7 +476,7 @@ export default function Home() {
           </div>
           
           {/* Content */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center p-4 pt-20 sm:pt-4">
+          <div className="relative z-10 w-full h-full flex items-center justify-center p-4 pt-32 sm:pt-4">
             <div className="max-w-3xl mx-auto w-full">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
