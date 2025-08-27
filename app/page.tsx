@@ -89,73 +89,20 @@ export default function Home() {
             <div className="absolute inset-0 min-h-screen bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
           </div>
           
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
-            {/* Floating Particles */}
-            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white/30 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '3s' }}></div>
-            <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-yellow-200/40 rounded-full animate-pulse" style={{ animationDelay: '1s', animationDuration: '4s' }}></div>
-            <div className="absolute top-2/3 left-1/3 w-1.5 h-1.5 bg-white/20 rounded-full animate-pulse" style={{ animationDelay: '2s', animationDuration: '3.5s' }}></div>
-            <div className="absolute bottom-1/4 right-1/4 w-1 h-1 bg-yellow-300/50 rounded-full animate-pulse" style={{ animationDelay: '0.5s', animationDuration: '4.5s' }}></div>
-            <div className="absolute top-1/2 left-1/5 w-1 h-1 bg-white/25 rounded-full animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '3.2s' }}></div>
-            
-            {/* Floating Orbs */}
-            <div className="absolute top-1/6 right-1/6 w-4 h-4 bg-gradient-to-r from-yellow-200/20 to-white/20 rounded-full animate-float" style={{ animationDelay: '0s', animationDuration: '6s' }}></div>
-            <div className="absolute bottom-1/6 left-1/6 w-3 h-3 bg-gradient-to-r from-white/15 to-yellow-200/15 rounded-full animate-float" style={{ animationDelay: '2s', animationDuration: '7s' }}></div>
-            <div className="absolute top-3/4 right-1/5 w-2 h-2 bg-gradient-to-r from-yellow-300/25 to-white/25 rounded-full animate-float" style={{ animationDelay: '1s', animationDuration: '5.5s' }}></div>
-            
-            {/* Sparkle Effects */}
-            <div className="absolute top-1/5 left-1/3 w-1 h-1 bg-white/60 rounded-full animate-ping" style={{ animationDelay: '0.3s', animationDuration: '2s' }}></div>
-            <div className="absolute top-2/3 right-1/4 w-0.5 h-0.5 bg-yellow-200/70 rounded-full animate-ping" style={{ animationDelay: '1.2s', animationDuration: '2.5s' }}></div>
-            <div className="absolute bottom-1/3 left-1/4 w-0.5 h-0.5 bg-white/50 rounded-full animate-ping" style={{ animationDelay: '0.8s', animationDuration: '1.8s' }}></div>
-          </div>
-          
           {/* Content */}
           <div className="relative z-10 w-full min-h-screen flex items-center justify-center pt-28 sm:pt-0 sm:h-full overflow-x-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ 
-                opacity: 1, 
-                y: 0,
-                scale: [1, 1.02, 1],
-              }}
-              transition={{ 
-                duration: 0.8,
-                scale: {
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }
-              }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
               className="pt-12 sm:pt-0"
             >
                   {/* Title and Subtitle */}
                               <div className="mb-6 sm:mb-8 relative">
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-2">
-                <motion.span 
-                  className="text-gradient"
-                  animate={{ 
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  }}
-                  transition={{ 
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  Furpad
-                </motion.span> 
-                <motion.span
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  🐾
-                </motion.span>
+                <span className="text-gradient">Furpad</span> 🐾
               </h1>
                     {/* Diamond to the left of title */}
                     <div className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-8 w-4 h-4 animate-pulse opacity-60" style={{ animationDelay: '0.3s', animationDuration: '2.2s' }}>
@@ -443,26 +390,14 @@ export default function Home() {
                       onClick={goToDeploySection}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                      animate={{ 
-                        boxShadow: [
-                          "0 0 0 0 rgba(59, 130, 246, 0.7)",
-                          "0 0 0 10px rgba(59, 130, 246, 0)",
-                          "0 0 0 0 rgba(59, 130, 246, 0)"
-                        ]
-                      }}
-                      transition={{ 
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                      className="bg-white text-blue-600 font-semibold py-3 px-6 sm:px-8 rounded-full transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white flex items-center justify-center shadow-lg text-sm sm:text-base relative"
+                      className="bg-white text-blue-600 font-semibold py-3 px-6 sm:px-8 rounded-full transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-white flex items-center justify-center shadow-lg text-sm sm:text-base"
                 >
                   <motion.div
-                    animate={{ rotate: [0, 360] }}
+                    animate={{ y: [0, -4, 0] }}
                     transition={{ 
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "linear"
+                      duration: 1.5, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
                     }}
                   >
                     <Rocket className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
@@ -477,13 +412,8 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileInView={{ 
-                opacity: 1, 
-                y: 0,
-                transition: { duration: 0.6, delay: 0.1 }
-              }}
-              className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-4 sm:p-6 text-center cursor-pointer transition-all duration-300 hover:bg-black/50 hover:border-white/50 hover:shadow-xl"
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-4 sm:p-6 text-center cursor-pointer transition-all duration-300 hover:bg-black/50 hover:border-white/50 hover:shadow-xl"
             >
                       <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 transition-all duration-300 group-hover:bg-primary-500/30">
                 <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-primary-400" />
@@ -544,20 +474,20 @@ export default function Home() {
           {/* Content */}
           <div className="relative z-10 w-full h-full flex items-center justify-center p-4 pt-32 sm:pt-4">
             <div className="max-w-3xl mx-auto w-full">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
                 className="card-scrollable w-full overflow-y-auto"
                 style={{ maxHeight: 'calc(100vh - 200px)' }}
               >
                 <div className="text-center mb-4 sm:mb-6">
                   <h2 className="text-xl sm:text-2xl font-bold mb-2">Deploy Your Token</h2>
                   <p className="text-sm sm:text-base text-white/90">Configure your token parameters and launch your memecoin</p>
-                </div>
-                <LaunchpadForm />
-              </motion.div>
             </div>
+            <LaunchpadForm />
+          </motion.div>
+        </div>
           </div>
         </div>
       </div>
