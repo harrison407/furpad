@@ -54,7 +54,7 @@ export default function Home() {
   }, [currentSection, totalSections])
 
   return (
-    <div className="h-screen overflow-hidden relative">
+    <div className="h-screen overflow-hidden relative overflow-x-hidden">
       <Header />
 
       {/* Navigation Arrows */}
@@ -88,7 +88,7 @@ export default function Home() {
         style={{ transform: `translateX(-${currentSection * 100}%)` }}
       >
         {/* Section 1: Hero */}
-        <div className="w-screen h-screen flex-shrink-0 relative overflow-y-auto sm:overflow-hidden">
+        <div className="w-screen h-screen flex-shrink-0 relative overflow-y-auto sm:overflow-hidden overflow-x-hidden">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <img 
@@ -103,8 +103,8 @@ export default function Home() {
           </div>
           
           {/* Content */}
-          <div className="relative z-10 w-full min-h-screen flex items-center justify-center pt-28 sm:pt-0 sm:h-full">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 w-full min-h-screen flex items-center justify-center pt-28 sm:pt-0 sm:h-full overflow-x-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
