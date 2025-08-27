@@ -109,9 +109,10 @@ export function LaunchpadForm() {
   }
 
   const calculateRemainingPercentage = () => {
+    const lpPerc = watchedValues.lpPercentage || 0
     const marketingPerc = watchedValues.marketingPercentage || 0
     const walletsPerc = (watchedValues.wallets || []).reduce((sum, wallet) => sum + (wallet.percentage || 0), 0)
-    return Math.max(0, 100 - marketingPerc - walletsPerc)
+    return Math.max(0, 100 - lpPerc - marketingPerc - walletsPerc)
   }
 
   return (
@@ -366,16 +367,36 @@ export function LaunchpadForm() {
           {/* Percentage Summary */}
           <div className="mt-4 p-4 bg-dark-700/50 rounded-xl">
             <div className="flex justify-between items-center">
-              <span className="text-sm text-dark-300">Total Allocated:</span>
-              <span className={`font-semibold ${calculateRemainingPercentage() < 0 ? 'text-red-400' : 'text-green-400'}`}>
-                {100 - calculateRemainingPercentage()}%
+              <span className="text-sm text-dark-300">LP Allocation:</span>
+              <span className="font-semibold text-blue-400">
+                {watchedValues.lpPercentage || 0}%
               </span>
             </div>
             <div className="flex justify-between items-center mt-1">
-              <span className="text-sm text-dark-300">Remaining:</span>
-              <span className={`font-semibold ${calculateRemainingPercentage() < 0 ? 'text-red-400' : 'text-green-400'}`}>
-                {calculateRemainingPercentage()}%
+              <span className="text-sm text-dark-300">Marketing:</span>
+              <span className="font-semibold text-purple-400">
+                {watchedValues.marketingPercentage || 0}%
               </span>
+            </div>
+            <div className="flex justify-between items-center mt-1">
+              <span className="text-sm text-dark-300">Additional Wallets:</span>
+              <span className="font-semibold text-orange-400">
+                {(watchedValues.wallets || []).reduce((sum, wallet) => sum + (wallet.percentage || 0), 0)}%
+              </span>
+            </div>
+            <div className="border-t border-dark-600 mt-2 pt-2">
+              <div className="flex justify-between items-center">
+                <span className="text-sm text-dark-300">Total Allocated:</span>
+                <span className={`font-semibold ${calculateRemainingPercentage() < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                  {100 - calculateRemainingPercentage()}%
+                </span>
+              </div>
+              <div className="flex justify-between items-center mt-1">
+                <span className="text-sm text-dark-300">Remaining:</span>
+                <span className={`font-semibold ${calculateRemainingPercentage() < 0 ? 'text-red-400' : 'text-green-400'}`}>
+                  {calculateRemainingPercentage()}%
+                </span>
+              </div>
             </div>
           </div>
         </div>
