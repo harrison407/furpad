@@ -103,16 +103,17 @@ export default function Home() {
           </div>
           
           {/* Content */}
-          <div className="relative z-10 w-full h-full flex items-center">
+          <div className="relative z-10 w-full h-full flex items-center justify-center pt-16 sm:pt-0">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
+              className="pt-8 sm:pt-0"
             >
                   {/* Title and Subtitle */}
-                              <div className="mb-8 relative">
+                              <div className="mb-6 sm:mb-8 relative">
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-2">
                 <span className="text-gradient">Furpad</span> 🐾
               </h1>
@@ -393,11 +394,11 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 sm:mb-12 max-w-3xl mx-auto drop-shadow-lg px-4">
+                  <p className="text-lg sm:text-xl md:text-2xl text-white mb-6 sm:mb-12 max-w-3xl mx-auto drop-shadow-lg px-4">
                 Deploy your memecoin with ease. Configure taxes, LP allocation, and wallet distributions in minutes.
               </p>
               
-                  <div className="flex justify-center items-center mb-8 sm:mb-16 px-4">
+                  <div className="flex justify-center items-center mb-6 sm:mb-16 px-4">
                 <motion.button
                       onClick={goToDeploySection}
                   whileHover={{ scale: 1.05 }}
@@ -410,7 +411,7 @@ export default function Home() {
               </div>
 
                   {/* Features Section - Moved into hero */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto px-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto px-4 mt-6 sm:mt-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -475,13 +476,13 @@ export default function Home() {
           </div>
           
           {/* Content */}
-          <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
+          <div className="relative z-10 w-full h-full flex items-center justify-center p-4 pt-20 sm:pt-4">
             <div className="max-w-3xl mx-auto w-full">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="card max-h-[85vh] sm:max-h-[80vh] overflow-y-auto"
+                className="card max-h-[75vh] sm:max-h-[80vh] overflow-y-auto"
               >
                 <div className="text-center mb-4 sm:mb-6">
                   <h2 className="text-xl sm:text-2xl font-bold mb-2">Deploy Your Token</h2>
@@ -496,7 +497,7 @@ export default function Home() {
 
       {/* Disclaimer */}
       {showDisclaimer && (
-        <div className="fixed bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 z-20">
+        <div className="fixed bottom-2 sm:bottom-4 left-2 sm:left-4 right-2 sm:right-4 z-50">
           <div className="bg-black/60 backdrop-blur-md border border-white/20 rounded-lg p-3 sm:p-4 text-center relative">
             <button
               onClick={() => setShowDisclaimer(false)}
