@@ -482,7 +482,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="card max-h-[75vh] sm:max-h-[80vh] overflow-y-auto"
+                className="card max-h-[85vh] overflow-y-auto"
               >
                 <div className="text-center mb-4 sm:mb-6">
                   <h2 className="text-xl sm:text-2xl font-bold mb-2">Deploy Your Token</h2>

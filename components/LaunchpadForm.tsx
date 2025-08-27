@@ -11,8 +11,20 @@ import { sepolia, goerli } from 'wagmi/chains'
 import toast from 'react-hot-toast'
 import { TokenDeployer } from './TokenDeployer'
 
+// Supported chains
+const SUPPORTED_CHAINS = [
+  { id: 11155111, name: 'Sepolia', icon: '🔴' },
+  { id: 5, name: 'Goerli', icon: '🔵' },
+  { id: 1, name: 'Ethereum', icon: '💎' },
+  { id: 137, name: 'Polygon', icon: '🟣' },
+  { id: 56, name: 'BSC', icon: '🟡' },
+  { id: 42161, name: 'Arbitrum', icon: '🔵' },
+  { id: 10, name: 'Optimism', icon: '🔴' },
+]
+
 // Form validation schema
 const launchpadSchema = z.object({
+  selectedChain: z.number().min(1, 'Please select a chain'),
   tokenName: z.string().min(1, 'Token name is required'),
   tokenSymbol: z.string().min(1, 'Token symbol is required').max(10, 'Symbol must be 10 characters or less'),
   totalSupply: z.string().min(1, 'Total supply is required'),
@@ -46,6 +58,7 @@ export function LaunchpadForm() {
   } = useForm<LaunchpadFormData>({
     resolver: zodResolver(launchpadSchema),
     defaultValues: {
+      selectedChain: 11155111, // Default to Sepolia
       tokenName: '',
       tokenSymbol: '',
       totalSupply: '1000000000',
@@ -71,8 +84,10 @@ export function LaunchpadForm() {
       return
     }
 
-    if (chain?.id !== sepolia.id && chain?.id !== goerli.id) {
-      toast.error('Please switch to Sepolia or Goerli testnet')
+    // Check if current chain matches selected chain
+    if (chain?.id !== data.selectedChain) {
+      const selectedChain = SUPPORTED_CHAINS.find(c => c.id === data.selectedChain)
+      toast.error(`Please switch to ${selectedChain?.name} network`)
       return
     }
 
@@ -106,24 +121,61 @@ export function LaunchpadForm() {
   return (
     <div className="space-y-8">
       {/* Network Check */}
-      {isConnected && chain && chain.id !== sepolia.id && chain.id !== goerli.id && (
+      {isConnected && chain && chain.id !== watch('selectedChain') && (
         <div className="bg-yellow-500/20 border border-yellow-500/50 rounded-xl p-4">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-yellow-400 font-semibold">Wrong Network</h3>
-              <p className="text-yellow-300 text-sm">Please switch to Sepolia or Goerli testnet</p>
+              <p className="text-yellow-300 text-sm">
+                Please switch to {SUPPORTED_CHAINS.find(c => c.id === watch('selectedChain'))?.name} network
+              </p>
             </div>
             <button
-              onClick={() => switchNetwork?.(sepolia.id)}
+              onClick={() => switchNetwork?.(watch('selectedChain'))}
               className="btn-secondary"
             >
-              Switch to Sepolia
+              Switch Network
             </button>
           </div>
         </div>
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Chain Selection */}
+        <div className="card">
+          <div className="flex items-center mb-4">
+            <Wallet className="w-5 h-5 mr-2 text-primary-400" />
+            <h3 className="text-lg font-semibold">Select Network</h3>
+          </div>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {SUPPORTED_CHAINS.map((chainOption) => (
+              <label
+                key={chainOption.id}
+                className={`relative cursor-pointer rounded-lg border-2 p-3 transition-all duration-200 hover:bg-white/5 ${
+                  watch('selectedChain') === chainOption.id
+                    ? 'border-primary-400 bg-primary-400/10'
+                    : 'border-white/20 hover:border-white/40'
+                }`}
+              >
+                <input
+                  type="radio"
+                  value={chainOption.id}
+                  {...register('selectedChain', { valueAsNumber: true })}
+                  className="sr-only"
+                />
+                <div className="text-center">
+                  <div className="text-2xl mb-1">{chainOption.icon}</div>
+                  <div className="text-sm font-medium">{chainOption.name}</div>
+                </div>
+              </label>
+            ))}
+          </div>
+          {errors.selectedChain && (
+            <p className="text-red-400 text-sm mt-2">{errors.selectedChain.message}</p>
+          )}
+        </div>
+
         {/* Basic Token Information */}
         <div className="card">
           <div className="flex items-center mb-4">
