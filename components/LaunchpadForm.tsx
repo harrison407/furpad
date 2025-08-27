@@ -137,7 +137,7 @@ export function LaunchpadForm() {
               <input
                 {...register('tokenName')}
                 className="input-field w-full"
-                placeholder="e.g., Furchill Token"
+                placeholder="e.g., Furchill"
               />
               {errors.tokenName && (
                 <p className="text-red-400 text-sm mt-1">{errors.tokenName.message}</p>
@@ -149,7 +149,7 @@ export function LaunchpadForm() {
               <input
                 {...register('tokenSymbol')}
                 className="input-field w-full"
-                placeholder="e.g., FURCH"
+                placeholder="e.g., FUR"
               />
               {errors.tokenSymbol && (
                 <p className="text-red-400 text-sm mt-1">{errors.tokenSymbol.message}</p>
